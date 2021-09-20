@@ -453,17 +453,7 @@
                   "managedDisk": {
                      "storageAccountType": "Standard_LRS"
                   }
-               },
-               "dataDisks": [
-                  {
-                     "lun": 0,
-                     "createOption": "FromImage",
-                     "diskSizeGB": 900,
-                     "managedDisk": {
-                        "storageAccountType": "Standard_LRS"
-                     }
-                  }
-               ]
+               }
             },
             "networkProfile": {
                "networkInterfaces": [
