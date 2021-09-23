@@ -366,7 +366,7 @@
       {
          "type": "Microsoft.Compute/virtualMachines",
          "apiVersion": "2020-06-01",
-         "name": "[concat(parameters('adminVMName'),'_rhel')]",
+         "name": "[parameters('adminVMName')]",
          "condition": "[if(contains(variables('name_linuxImageOfferSKU'), 'rhel'), bool('true'), bool('false'))]",
          "location": "[parameters('location')]",
          "dependsOn": [
@@ -421,7 +421,7 @@
       {
          "type": "Microsoft.Compute/virtualMachines",
          "apiVersion": "2020-06-01",
-         "name": "[concat(parameters('adminVMName'),'_ol')]",
+         "name": "[parameters('adminVMName')]",
          "condition": "[not(if(contains(variables('name_linuxImageOfferSKU'), 'rhel'), bool('true'), bool('false')))]",
          "location": "[parameters('location')]",
          "dependsOn": [
