@@ -366,7 +366,7 @@
       {
          "type": "Microsoft.Compute/virtualMachines",
          "apiVersion": "2020-06-01",
-         "name": "[parameters('adminVMName')]",
+         "name": "[concat(parameters('adminVMName'),'_rhel')]",
          "condition": "[if(contains(variables('name_linuxImageOfferSKU'), 'rhel'), bool('true'), bool('false'))]",
          "location": "[parameters('location')]",
          "dependsOn": [
@@ -421,7 +421,7 @@
       {
          "type": "Microsoft.Compute/virtualMachines",
          "apiVersion": "2020-06-01",
-         "name": "[parameters('adminVMName')]",
+         "name": "[concat(parameters('adminVMName'),'_ol')]",
          "condition": "[not(if(contains(variables('name_linuxImageOfferSKU'), 'rhel'), bool('true'), bool('false')))]",
          "location": "[parameters('location')]",
          "dependsOn": [
@@ -489,7 +489,8 @@
          "apiVersion": "2020-06-01",
          "location": "[parameters('location')]",
          "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines/', parameters('adminVMName'))]",
+            "[resourceId('Microsoft.Compute/virtualMachines/', concat(parameters('adminVMName'),'_rhel'))]",
+            "[resourceId('Microsoft.Compute/virtualMachines/', concat(parameters('adminVMName'),'_ol'))]",
             "[variables('ref_fileShare')]"
          ],
          "properties": {
