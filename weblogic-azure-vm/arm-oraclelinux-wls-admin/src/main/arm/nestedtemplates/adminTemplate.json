@@ -365,7 +365,7 @@
       },
       {
          "type": "Microsoft.Compute/virtualMachines",
-         "apiVersion": "2020-06-01",
+         "apiVersion": "${azure.apiVersion}",
          "name": "[parameters('adminVMName')]",
          "location": "[parameters('location')]",
          "dependsOn": [
@@ -395,29 +395,18 @@
                   "managedDisk": {
                      "storageAccountType": "Standard_LRS"
                   }
-               }
-            },
-            "networkProfile": {
-               "networkInterfaces": [
+               },
+               "dataDisks": [
                   {
-                     "id": "[resourceId('Microsoft.Network/networkInterfaces',variables('name_nic'))]"
+                     "lun": 0,
+                     "createOption": "FromImage",
+                     "diskSizeGB": 900,
+                     "managedDisk": {
+                        "storageAccountType": "Standard_LRS"
+                     }
                   }
                ]
             },
-            "diagnosticsProfile": {
-               "bootDiagnostics": {
-                  "enabled": true,
-                  "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', variables('name_storageAccount')), '2019-06-01').primaryEndpoints.blob]"
-               }
-            }
-         },
-         "plan": {
-            "name": "[variables('name_linuxImageOfferSKU')]",
-            "publisher": "[variables('const_imagePublisher')]",
-            "product": "[variables('const_imageOffer')]"
-         }
-      },
-
             "networkProfile": {
                "networkInterfaces": [
                   {
@@ -437,7 +426,7 @@
             "publisher": "[variables('const_imagePublisher')]",
             "product": "[variables('const_imageOffer')]"
          }
-      },      
+      },
       {
          "name": "[concat(parameters('adminVMName'),'/newuserscript')]",
          "type": "Microsoft.Compute/virtualMachines/extensions",
