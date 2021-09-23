@@ -366,8 +366,7 @@
       {
          "type": "Microsoft.Compute/virtualMachines",
          "apiVersion": "2020-06-01",
-         "name": "[concat(parameters('adminVMName'),'_rhel')]",
-         "condition": "[if(contains(variables('name_linuxImageOfferSKU'), 'rhel'), bool('true'), bool('false'))]",
+         "name": "[parameters('adminVMName')]",
          "location": "[parameters('location')]",
          "dependsOn": [
             "[resourceId('Microsoft.Storage/storageAccounts/', variables('name_storageAccount'))]",
@@ -418,51 +417,7 @@
             "product": "[variables('const_imageOffer')]"
          }
       },
-      {
-         "type": "Microsoft.Compute/virtualMachines",
-         "apiVersion": "2020-06-01",
-         "name": "[concat(parameters('adminVMName'),'ol')]",
-         "condition": "[if(contains(variables('name_linuxImageOfferSKU'), 'ol'), bool('true'), bool('false'))]",
-         "location": "[parameters('location')]",
-         "dependsOn": [
-            "[resourceId('Microsoft.Storage/storageAccounts/', variables('name_storageAccount'))]",
-            "[resourceId('Microsoft.Network/networkInterfaces/', variables('name_nic'))]"
-         ],
-         "identity": "[if(parameters('useSystemAssignedManagedIdentity'), json('{\"type\":\"SystemAssigned\"}'), null())]",
-         "properties": {
-            "hardwareProfile": {
-               "vmSize": "[variables('const_vmSize')]"
-            },
-            "osProfile": {
-               "computerName": "[parameters('adminVMName')]",
-               "adminUsername": "[parameters('adminUsername')]",
-               "adminPassword": "[parameters('adminPasswordOrKey')]",
-               "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'password'), json('null'), variables('const_linuxConfiguration'))]"
-            },
-            "storageProfile": {
-               "imageReference": {
-                  "publisher": "[variables('const_imagePublisher')]",
-                  "offer": "[variables('const_imageOffer')]",
-                  "sku": "[variables('name_linuxImageOfferSKU')]",
-                  "version": "[variables('name_linuxImageVersion')]"
-               },
-               "osDisk": {
-                  "createOption": "FromImage",
-                  "managedDisk": {
-                     "storageAccountType": "Standard_LRS"
-                  }
-               },
-               "dataDisks": [
-                  {
-                     "lun": 0,
-                     "createOption": "FromImage",
-                     "diskSizeGB": 900,
-                     "managedDisk": {
-                        "storageAccountType": "Standard_LRS"
-                     }
-                  }
-               ]
-            },
+
             "networkProfile": {
                "networkInterfaces": [
                   {
