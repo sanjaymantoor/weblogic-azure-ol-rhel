@@ -422,7 +422,7 @@
          "type": "Microsoft.Compute/virtualMachines",
          "apiVersion": "2020-06-01",
          "name": "[concat(parameters('adminVMName'),'ol')]",
-         "condition": "[if(not(contains(variables('name_linuxImageOfferSKU'), 'rhel'), bool('true'), bool('false')))]",
+         "condition": "[if(contains(variables('name_linuxImageOfferSKU'), 'ol'), bool('true'), bool('false'))]",
          "location": "[parameters('location')]",
          "dependsOn": [
             "[resourceId('Microsoft.Storage/storageAccounts/', variables('name_storageAccount'))]",
