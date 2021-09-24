@@ -486,12 +486,12 @@
          }
       },      
       {
-         "name": "[concat(parameters('adminVMName'),'/newuserscript')]",
+         "name": "[variables('name_adminVM_ol'),'/newuserscript')]",
          "type": "Microsoft.Compute/virtualMachines/extensions",
          "apiVersion": "2020-06-01",
          "location": "[parameters('location')]",
          "dependsOn": [
-			"[resourceId('Microsoft.Compute/virtualMachines/',variables('name_adminVM_ol'))]",            
+			"[resourceId('Microsoft.Compute/virtualMachines/',if(contains(variables('name_linuxImageOfferSKU'), 'ol'),variables('name_adminVM_ol'),variables('name_adminVM_rhel')))]",            
             "[variables('ref_fileShare')]"
          ],
          "properties": {
@@ -514,7 +514,7 @@
          "apiVersion": "2020-06-01",
          "name": "be93a897-f205-5faa-8998-a0bb2014a5ac",
          "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('adminVMName'), 'newuserscript')]"
+            "[resourceId('Microsoft.Compute/virtualMachines/extensions', variables('name_adminVM_ol'), 'newuserscript')]"
          ],
          "properties": {
             "mode": "Incremental",
@@ -532,7 +532,7 @@
          "name": "pid-caa3ea2b-cdec-55ee-8510-854ed10d7ebe",
          "condition": "[if(contains(variables('name_linuxImageOfferSKU'), 'owls-122130-jdk8-ol74'), bool('true'), bool('false'))]",
          "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('adminVMName'), 'newuserscript')]"
+            "[resourceId('Microsoft.Compute/virtualMachines/extensions', variables('name_adminVM_ol'), 'newuserscript')]"
          ],
          "properties": {
             "mode": "Incremental",
@@ -550,7 +550,7 @@
          "name": "pid-bf1d0f1a-cb9a-5453-bf70-42b4efe8c15e",
          "condition": "[if(contains(variables('name_linuxImageOfferSKU'), 'from.owls-122130-jdk8-ol73'), bool('true'), bool('false'))]",
          "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('adminVMName'), 'newuserscript')]"
+            "[resourceId('Microsoft.Compute/virtualMachines/extensions', variables('name_adminVM_ol'), 'newuserscript')]"
          ],
          "properties": {
             "mode": "Incremental",
@@ -568,7 +568,7 @@
          "name": "pid-bde756bb-ce96-54d5-a478-04d9bd87e9db",
          "condition": "[if(contains(variables('name_linuxImageOfferSKU'), 'from.owls-122140-jdk8-ol76'), bool('true'), bool('false'))]",
          "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('adminVMName'), 'newuserscript')]"
+            "[resourceId('Microsoft.Compute/virtualMachines/extensions', variables('name_adminVM_ol'), 'newuserscript')]"
          ],
          "properties": {
             "mode": "Incremental",
@@ -586,7 +586,7 @@
          "name": "pid-b6f00a34-1478-5a10-9a84-49c4051b57b8",
          "condition": "[if(contains(variables('name_linuxImageOfferSKU'), 'owls-141100-jdk8-ol76'), bool('true'), bool('false'))]",
          "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('adminVMName'), 'newuserscript')]"
+            "[resourceId('Microsoft.Compute/virtualMachines/extensions', variables('name_adminVM_ol'), 'newuserscript')]"
          ],
          "properties": {
             "mode": "Incremental",
@@ -604,7 +604,7 @@
          "name": "pid-afc8f9c5-8c5d-5d1b-ab4d-3116ca908bfd",
          "condition": "[if(contains(variables('name_linuxImageOfferSKU'), 'owls-141100-jdk11-ol76'), bool('true'), bool('false'))]",
          "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('adminVMName'), 'newuserscript')]"
+            "[resourceId('Microsoft.Compute/virtualMachines/extensions', variables('name_adminVM_ol'), 'newuserscript')]"
          ],
          "properties": {
             "mode": "Incremental",
@@ -622,7 +622,7 @@
          "name": "owls-141100-jdk11-rhel76",
          "condition": "[if(contains(variables('name_linuxImageOfferSKU'), 'owls-141100-jdk11-rhel76'), bool('true'), bool('false'))]",
          "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('adminVMName'), 'newuserscript')]"
+            "[resourceId('Microsoft.Compute/virtualMachines/extensions', variables('name_adminVM_rhel'), 'newuserscript')]"
          ],
          "properties": {
             "mode": "Incremental",
@@ -640,7 +640,7 @@
          "name": "owls-141100-jdk8-rhel76",
          "condition": "[if(contains(variables('name_linuxImageOfferSKU'), 'owls-141100-jdk8-rhel76'), bool('true'), bool('false'))]",
          "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('adminVMName'), 'newuserscript')]"
+            "[resourceId('Microsoft.Compute/virtualMachines/extensions', variables('name_adminVM_rhel'), 'newuserscript')]"
          ],
          "properties": {
             "mode": "Incremental",
@@ -658,7 +658,7 @@
          "name": "owls-122140-jdk8-rhel76",
          "condition": "[if(contains(variables('name_linuxImageOfferSKU'), 'owls-122140-jdk8-rhel76'), bool('true'), bool('false'))]",
          "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('adminVMName'), 'newuserscript')]"
+            "[resourceId('Microsoft.Compute/virtualMachines/extensions',variables('name_adminVM_rhel'), 'newuserscript')]"
          ],
          "properties": {
             "mode": "Incremental",
