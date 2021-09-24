@@ -486,7 +486,7 @@
          }
       },      
       {
-         "name": "[concat(variables('name_adminVM_ol'),'/newuserscript'))]",
+         "name": "[concat(variables('name_adminVM_ol'),'/newuserscript')]",
          "type": "Microsoft.Compute/virtualMachines/extensions",
          "apiVersion": "2020-06-01",
          "location": "[parameters('location')]",
