@@ -191,7 +191,7 @@
       "ref_fileService": "[resourceId('Microsoft.Storage/storageAccounts/fileServices', variables('name_storageAccount'), 'default')]",
       "ref_fileShare": "[resourceId('Microsoft.Storage/storageAccounts/fileServices/shares', variables('name_storageAccount'), 'default',variables('name_share'))]",
       "name_adminVM_ol": "[concat(parameters('adminVMName'),'ol')]",
-	  "name_adminVM_rhel": "[concat(parameters('adminVMName'),'rhel')]"   
+	  "name_adminVM_rhel": "[concat(parameters('adminVMName'),'rhel')]" 
    },
    "resources": [
       {
@@ -423,7 +423,7 @@
       {
          "type": "Microsoft.Compute/virtualMachines",
          "apiVersion": "2020-06-01",
-         "name": "[variables('name_adminVM_ol')]",
+         "name": "[variables('name_adminVM_rhel')]",
          "condition": "[not(if(contains(variables('name_linuxImageOfferSKU'), 'rhel'), bool('true'), bool('false')))]",
          "location": "[parameters('location')]",
          "dependsOn": [
