@@ -500,7 +500,11 @@
       "name_dnszonesLinkedTemplateName": "dnszonesTemplate.json",
       "name_elkLinkedTemplateName": "elkNestedTemplate.json",
       "name_nsgLinkedTemplateName": "nsgNestedTemplate.json",
-      "name_keyVaultNestedTemplate": "_keyVaultNestedTemplate.json"
+      "name_keyVaultNestedTemplate": "_keyVaultNestedTemplate.json",
+      "name_linuxImageOfferSKU": "[first(split(parameters('skuUrnVersion'), ';'))]",
+      "name_adminVM_ol": "[concat(parameters('adminVMName'),'_ol')]",
+	  "name_adminVM_rhel": "[concat(parameters('adminVMName'),'_rhel')]",
+      "name_adminVM": "[if(contains(variables('name_linuxImageOfferSKU'), 'ol'),variables('name_adminVM_ol'),variables('name_adminVM_rhel'))]"
    },
    "resources": [
       {
@@ -542,7 +546,7 @@
                   "value": "[parameters('adminUsername')]"
                },
                "adminVMName": {
-                  "value": "[parameters('adminVMName')]"
+                  "value": "[variables('name_adminVM')]"
                },
                "authenticationType": {
                   "value": "[parameters('authenticationType')]"
@@ -656,7 +660,7 @@
                   "value": "[parameters('adminUsername')]"
                },
                "adminVMName": {
-                  "value": "[parameters('adminVMName')]"
+                  "value": "[variables('name_adminVM')]"
                },
                "authenticationType": {
                   "value": "[parameters('authenticationType')]"
@@ -858,7 +862,7 @@
                   "value": "[parameters('_artifactsLocationSasToken')]"
                },
                "adminVMName": {
-                  "value": "[parameters('adminVMName')]"
+                  "value": "[variables('name_adminVM')]"
                },
                "databaseType": {
                   "value": "[parameters('databaseType')]"
@@ -919,7 +923,7 @@
                   "value": "[parameters('aadsServerHost')]"
                },
                "adminVMName": {
-                  "value": "[parameters('adminVMName')]"
+                  "value": "[variables('name_adminVM')]"
                },
                "location": {
                   "value": "[parameters('location')]"
@@ -986,7 +990,7 @@
                   "value": "[parameters('aadsServerHost')]"
                },
                "adminVMName": {
-                  "value": "[parameters('adminVMName')]"
+                  "value": "[variables('name_adminVM')]"
                },
                "location": {
                   "value": "[parameters('location')]"
@@ -1057,7 +1061,7 @@
                   "value": "[parameters('_artifactsLocationSasToken')]"
                },
                "adminVMName": {
-                  "value": "[parameters('adminVMName')]"
+                  "value": "[variables('name_adminVM')]"
                },
                "elasticsearchEndpoint": {
                   "value": "[parameters('elasticsearchEndpoint')]"
