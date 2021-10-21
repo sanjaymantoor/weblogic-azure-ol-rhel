@@ -192,7 +192,7 @@
       "ref_fileShare": "[resourceId('Microsoft.Storage/storageAccounts/fileServices/shares', variables('name_storageAccount'), 'default',variables('name_share'))]",
       "name_adminVM_ol": "[concat(parameters('adminVMName'),'ol')]",
 	  "name_adminVM_rhel": "[concat(parameters('adminVMName'),'rhel')]",
-	  "name_adminVM": "adminVMrhel"
+	  "name_adminVM": "[concat(parameters('adminVMName'),if(contains(variables('name_linuxImageOfferSKU'), 'ol'),'ol','rhel'))]"
    },
    "resources": [
       {
@@ -487,7 +487,7 @@
          }
       },      
       {
-         "name": "[concat(if(contains(variables('name_linuxImageOfferSKU'), 'ol'),variables('name_adminVM_ol'),variables('name_adminVM_rhel')),'/newuserscript')]",
+         "name": "[concat(variables('name_adminVM'),'/newuserscript')]",
          "type": "Microsoft.Compute/virtualMachines/extensions",
          "apiVersion": "2020-06-01",
          "location": "[parameters('location')]",
