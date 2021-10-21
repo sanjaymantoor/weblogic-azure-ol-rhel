@@ -190,8 +190,8 @@
       "ref_storage": "[resourceId('Microsoft.Storage/storageAccounts', variables('name_storageAccount'))]",
       "ref_fileService": "[resourceId('Microsoft.Storage/storageAccounts/fileServices', variables('name_storageAccount'), 'default')]",
       "ref_fileShare": "[resourceId('Microsoft.Storage/storageAccounts/fileServices/shares', variables('name_storageAccount'), 'default',variables('name_share'))]",
-      "name_adminVM_ol": "[concat(parameters('adminVMName'),'_ol')]",
-	  "name_adminVM_rhel": "[concat(parameters('adminVMName'),'_rhel')]"
+      "name_adminVM_ol": "[concat(parameters('adminVMName'),'OL')]",
+	  "name_adminVM_rhel": "[concat(parameters('adminVMName'),'RHEL')]"
    },
    "resources": [
       {

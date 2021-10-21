@@ -502,8 +502,8 @@
       "name_nsgLinkedTemplateName": "nsgNestedTemplate.json",
       "name_keyVaultNestedTemplate": "_keyVaultNestedTemplate.json",
       "name_linuxImageOfferSKU": "[first(split(parameters('skuUrnVersion'), ';'))]",
-      "name_adminVM_ol": "[concat(parameters('adminVMName'),'_ol')]",
-	  "name_adminVM_rhel": "[concat(parameters('adminVMName'),'_rhel')]",
+      "name_adminVM_ol": "[concat(parameters('adminVMName'),'OL')]",
+	  "name_adminVM_rhel": "[concat(parameters('adminVMName'),'RHEL')]",
       "name_adminVM": "[if(contains(variables('name_linuxImageOfferSKU'), 'ol'),variables('name_adminVM_ol'),variables('name_adminVM_rhel'))]"
    },
    "resources": [
