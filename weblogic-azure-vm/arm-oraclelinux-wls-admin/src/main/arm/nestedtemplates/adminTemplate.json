@@ -491,7 +491,7 @@
          "apiVersion": "2020-06-01",
          "location": "[parameters('location')]",
          "dependsOn": [
-			"[resourceId('Microsoft.Compute/virtualMachines/',if(contains(variables('name_linuxImageOfferSKU'), 'ol'),variables('name_adminVM_ol'),variables('name_adminVM_rhel')))]",            
+			"[resourceId('Microsoft.Compute/virtualMachines/', parameters('adminVMName'))]",            
             "[variables('ref_fileShare')]"
          ],
          "properties": {
